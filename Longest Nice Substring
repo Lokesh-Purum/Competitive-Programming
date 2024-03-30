@@ -1,0 +1,25 @@
+class Solution:
+    def longestNiceSubstring(self, s: str) -> str:
+        win_size = len(s)
+        while win_size > 1:
+            slidingWindowCount = len(s) - win_size + 1
+            index = 0
+            while slidingWindowCount > 0:
+                mp ={}
+                tempstr = s[index : win_size + index]
+                for i in tempstr:
+                    if i not in mp:
+                        j = i.swapcase()
+                        if j in mp:
+                            mp[j] = 2
+                        else:
+                            mp[i] = 1
+                for i, j in mp.items():
+                    if j == 1:
+                        break
+                else:
+                    return tempstr
+                index += 1
+                slidingWindowCount -= 1
+            win_size -= 1
+        return ""
