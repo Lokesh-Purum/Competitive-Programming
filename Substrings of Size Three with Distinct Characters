@@ -1,0 +1,19 @@
+class Solution:
+    def countGoodSubstrings(self, s: str) -> int:
+        size = 3
+        slidesizecount = len(s) - size + 1
+        i = 0
+        c = 0
+        while slidesizecount > 0:
+            lst = []
+            tempstr = s[i : size + i]
+            for j in tempstr:
+                if j in lst:
+                    break
+                else:
+                    lst.append(j)
+            else:
+                c += 1
+            i += 1
+            slidesizecount -= 1
+        return c
