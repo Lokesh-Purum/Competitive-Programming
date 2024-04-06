@@ -1,0 +1,18 @@
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+        l1 = len(s)
+        l2 = len(p)
+        if l1 < l2:
+            return []
+        itersize = l1 - l2 + 1
+        i = 0
+        p = sorted(p)
+        res = []
+        while itersize:
+            x = s[i : l2 + i]
+            x = sorted(x)
+            if x == p:
+                res.append(i)
+            itersize -= 1
+            i += 1
+        return res
