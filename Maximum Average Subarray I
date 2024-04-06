@@ -1,0 +1,18 @@
+class Solution:
+    def findMaxAverage(self, nums: List[int], k: int) -> float:
+        if k == 0:
+            return 0
+        winsize = k
+        slidewincnt = len(nums) - winsize + 1
+        i = 0
+        s = sum(nums[0 : winsize])
+        avg = float('-inf')
+        while slidewincnt > 0:
+            if i > 0:
+                s = s - nums[i - 1] + nums[i + winsize - 1]
+            avgtmp = s / k
+            if avgtmp > avg:
+                avg = avgtmp
+            i += 1
+            slidewincnt -= 1
+        return avg
